@@ -1,0 +1,1202 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.6.5)  5 JUN 2026 23:52
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(./setup.tex (./vkr.cls
+Document Class: vkr VKR class
+(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
+(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-05-26 L3 programming layer (loader) 
+
+(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2026-02-18 L3 backend support: XeTeX
+\g__graphics_track_int=\count273
+\g__pdfannot_backend_int=\count274
+\g__pdfannot_backend_link_int=\count275
+))
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+
+(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count276
+\l__fontspec_language_int=\count277
+\l__fontspec_strnum_int=\count278
+\l__fontspec_tmp_int=\count279
+\l__fontspec_tmpa_int=\count280
+\l__fontspec_tmpb_int=\count281
+\l__fontspec_tmpc_int=\count282
+\l__fontspec_em_int=\count283
+\l__fontspec_emdef_int=\count284
+\l__fontspec_strong_int=\count285
+\l__fontspec_strongdef_int=\count286
+\l__fontspec_tmpa_dim=\dimen150
+\l__fontspec_tmpb_dim=\dimen151
+\l__fontspec_tmpc_dim=\dimen152
+
+(c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+
+Package fontspec Info: 
+(fontspec)             Font family 'TimesNewRoman(0)' created for font 'Times
+(fontspec)             New Roman' with options [Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Times New
+(fontspec)             Roman/OT:script=latn;language=dflt;+smcp;mapping=tex-tex
+t;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Times New
+(fontspec)             Roman/B/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: <->"Times
+(fontspec)             New
+(fontspec)             Roman/B/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/I/OT:script=latn;language=dflt;+smcp;mapping=tex-t
+ext;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Times New
+(fontspec)             Roman/BI/OT:script=latn;language=dflt;mapping=tex-text;"
+
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"Times New
+(fontspec)             Roman/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-
+text;"
+
+\pagetop=\skip49
+\pagebottom=\skip50
+\pageleft=\skip51
+\pageright=\skip52
+\pwidth=\skip53
+\pheight=\skip54
+\saved@arstrutbox=\box53
+\c@section=\count287
+\c@subsection=\count288
+\c@subsubsection=\count289
+\c@paragraph=\count290
+\c@figure=\count291
+\c@figurecnt=\count292
+\abovecaptionskip=\skip55
+\belowcaptionskip=\skip56
+\c@table=\count293
+\c@tablecnt=\count294
+\c@lastpage=\count295
+\c@числоПлакатов=\count296
+\c@bibcount=\count297
+)
+(c:/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/05/20 v26.8 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count298
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2084.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2086.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2088.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2089.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2090.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2092.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2117.
+\U@D=\dimen153
+\l@unhyphenated=\language91
+
+(c:/texlive/2026/texmf-dist/tex/generic/babel/xebabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count299
+
+(c:/texlive/2026/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
+(c:/texlive/2026/texmf-dist/tex/generic/babel/locale/ru/babel-russian.tex)
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 4356.
+
+(c:/texlive/2026/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 108.
+)
+Package babel Info: Importing font and identification data for russian
+(babel)             from babel-ru.ini. Reported on input line 4356.
+
+(c:/texlive/2026/texmf-dist/tex/generic/babel-russian/russianb.ldf
+File: russianb.ldf 2021/01/10 1.3m Russian support for the Babel system
+Language: russian 2020/09/09 1.3k Russian support for the Babel system
+Package babel Info: Making " an active character on input line 124.
+Package babel Info: Default for \cyrdash is provided on input line 163.
+)
+(c:/texlive/2026/texmf-dist/tex/generic/babel/cyrl2uni.def
+File: cyrl2uni.def 2026/05/03 v0.3 Map to Unicode from Cyrillic LICR
+)) (./xltabular.sty
+Package: xltabular 2020/11/04 v0.2e `xltabular' package (hv,RN)
+
+(c:/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+
+(c:/texlive/2026/texmf-dist/tex/latex/tools/array.sty
+Package: array 2026/02/24 v2.7b Tabular extension package (FMi)
+\col@sep=\dimen154
+\ar@mcellbox=\box54
+\extrarowheight=\dimen155
+\NC@list=\toks17
+\extratabsurround=\skip57
+\backup@length=\skip58
+\ar@cellbox=\box55
+)
+\TX@col@width=\dimen156
+\TX@old@table=\dimen157
+\TX@old@col=\dimen158
+\TX@target=\dimen159
+\TX@delta=\dimen160
+\TX@cols=\count300
+\TX@ftn=\toks18
+)
+(c:/texlive/2026/texmf-dist/tex/latex/ltablex/ltablex.sty
+Package: ltablex 2014/08/13 v1.1 Modified tabularx
+
+(c:/texlive/2026/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2026-01-28 v4.27 Multi-page Table package (DPC)
+\LTleft=\skip59
+\LTright=\skip60
+\LTpre=\skip61
+\LTpost=\skip62
+\LTchunksize=\count301
+\LTcapwidth=\dimen161
+\LT@head=\box56
+\LT@firsthead=\box57
+\LT@foot=\box58
+\LT@lastfoot=\box59
+\LT@gbox=\box60
+\LT@cols=\count302
+\LT@rows=\count303
+\c@LT@tables=\count304
+\c@LT@chunks=\count305
+\LT@p@ftn=\toks19
+)))
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 106.
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen162
+\Gin@req@width=\dimen163
+)
+(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
+
+(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+))
+(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count306
+)
+(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count307
+)
+(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen164
+\Hy@linkcounter=\count308
+\Hy@pagecounter=\count309
+
+(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
+)
+(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count310
+
+(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 3164.
+Package hyperref Info: Hyper figures OFF on input line 4199.
+Package hyperref Info: Link nesting OFF on input line 4204.
+Package hyperref Info: Hyper index ON on input line 4207.
+Package hyperref Info: Plain pages OFF on input line 4214.
+Package hyperref Info: Backreferencing OFF on input line 4219.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4466.
+\c@Hy@tempcnt=\count311
+
+(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4805.
+\XeTeXLinkMargin=\dimen165
+
+(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count312
+\Field@Width=\dimen166
+\Fld@charsize=\dimen167
+Package hyperref Info: Hyper figures OFF on input line 6091.
+Package hyperref Info: Link nesting OFF on input line 6096.
+Package hyperref Info: Hyper index ON on input line 6099.
+Package hyperref Info: backreferencing OFF on input line 6106.
+Package hyperref Info: Link coloring OFF on input line 6111.
+Package hyperref Info: Link coloring with OCG OFF on input line 6116.
+Package hyperref Info: PDF/A mode OFF on input line 6121.
+\Hy@abspage=\count313
+\c@Item=\count314
+\c@Hfootnote=\count315
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+
+(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2026-04-24 v7.01q Hyperref driver for XeTeX
+\pdfm@box=\box61
+\c@Hy@AnnotLevel=\count316
+\HyField@AnnotCount=\count317
+\Fld@listcount=\count318
+\c@bookmark@seq@number=\count319
+
+(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip63
+)
+(c:/texlive/2026/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count320
+\float@exts=\toks21
+\float@box=\box62
+\@float@everytoks=\toks22
+\@floatcapt=\box63
+)
+(c:/texlive/2026/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
+
+(c:/texlive/2026/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PD
+F (HO)
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
+
+))
+(c:/texlive/2026/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen168
+\c@nlinenum=\count321
+\TeXr@lab=\toks23
+)
+(c:/texlive/2026/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(c:/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
+
+Package array Warning: Redefining primitive column r on input line 20.
+
+(c:/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(c:/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen169
+\captionmargin=\dimen170
+\caption@leftmargin=\dimen171
+\caption@rightmargin=\dimen172
+\caption@width=\dimen173
+\caption@indent=\dimen174
+\caption@parindent=\dimen175
+\caption@hangindent=\dimen176
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\vskip \abovecaptionski
+p \sbox \@tempboxa {#1 -- #2}\ifdim \wd \@tempboxa >\hsize #1 -- #2\par \else \
+global \@minipagefalse \if \instring {Таб}{#1} \hb@xt@ \hsize {\box \@tempboxa 
+\hfil }\else \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }\fi \fi \vskip \below
+captionskip  on input line 1175.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count322
+\c@continuedfloat=\count323
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(c:/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip64
+\enit@outerparindent=\dimen177
+\enit@toks=\toks24
+\enit@inbox=\box64
+\enit@count@id=\count324
+\enitdp@description=\count325
+)
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2026-05-17 v1.3f Standard LaTeX Color (DPC)
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: xetex.def on input line 149.
+
+(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(c:/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count326
+\lst@gtempboxa=\box65
+\lst@token=\toks25
+\lst@length=\count327
+\lst@currlwidth=\dimen178
+\lst@column=\count328
+\lst@pos=\count329
+\lst@lostspace=\dimen179
+\lst@width=\dimen180
+\lst@newlines=\count330
+\lst@lineno=\count331
+\lst@maxwidth=\dimen181
+
+(c:/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+(c:/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count332
+\lst@skipnumbers=\count333
+\lst@framebox=\box66
+)
+(c:/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+
+Package fontspec Info: 
+(fontspec)             Verdana scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/B scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/B scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/I scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/I scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/BI scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Verdana/BI scale = 0.7.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Verdana(0)' created for font 'Verdana'
+(fontspec)             with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space,Scale=0.7].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/OT:script=latn;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/OT:script=latn;language=dflt;+smcp;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/B/OT:script=latn;language=dflt;+smcp;
+"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/I/OT:script=latn;language=dflt;+smcp;
+"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/BI/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[0.7]"Verdana/BI/OT:script=latn;language=dflt;+smcp
+;"
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
+(fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
+(fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+
+
+(c:/texlive/2026/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+)
+(c:/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+)) (./main.aux
+Package babel Info: 'russian' activates 'russian' shorthands.
+(babel)             Reported on input line 8.
+)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+
+Package fontspec Info: 
+(fontspec)             Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 31.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 31.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 31.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 31.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 31.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 31.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 31.
+LaTeX Font Info:    Redeclaring math accent \check on input line 31.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 31.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 31.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 31.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 31.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 3
+1.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 
+31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on 
+input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line
+ 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 
+31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/Verdana(0)/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on 
+input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/b/it on input lin
+e 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/Verdana(0)/b/n on input line 31.
+LaTeX Info: Redefining \th on input line 31.
+Package hyperref Info: Link coloring OFF on input line 31.
+
+(./main.out) (./main.out)
+\@outlinefile=\write3
+\openout3 = `main.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count334
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 33.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 33.
+
+Overfull \hbox (4.70218pt too wide) in paragraph at lines 33--33
+[] 
+ []
+
+
+Overfull \hbox (4.70218pt too wide) in paragraph at lines 33--33
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+
+ []
+
+[1] (./ЛистЗадания.tex [2] (./main.lop [3])
+\tf@lop=\write4
+\openout4 = `main.lop'.
+
+
+Overfull \hbox (4.70218pt too wide) in paragraph at lines 92--103
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--103
+
+ []
+
+) (./Реферат.tex [4]
+\c=\count335
+\last=\count336
+\pnul=\count337
+\c=\count338
+\last=\count339
+\pnul=\count340
+\c=\count341
+\last=\count342
+\pnul=\count343
+\c=\count344
+\last=\count345
+\pnul=\count346
+ [5]
+\c=\count347
+\last=\count348
+\pnul=\count349
+\c=\count350
+\last=\count351
+\pnul=\count352
+\c=\count353
+\last=\count354
+\pnul=\count355
+\c=\count356
+\last=\count357
+\pnul=\count358
+) [6] (./main.toc [7]
+Underfull \hbox (badness 2080) in paragraph at lines 37--37
+[][][]\TU/TimesNewRoman(0)/m/n/14.4 Формирование и подписание договора аренды у
+частниками 
+ []
+
+[8])
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ (./main.lpc)
+\tf@lpc=\write6
+\openout6 = `main.lpc'.
+
+ (./Обозначения.tex
+Underfull \hbox (badness 1715) in paragraph at lines 1--1
+\TU/TimesNewRoman(0)/m/n/14.4 Диаграмма прецедентов (Графический материал / Диа
+грамма прецеден-
+ []
+
+
+Underfull \hbox (badness 1675) in paragraph at lines 1--1
+\TU/TimesNewRoman(0)/m/n/14.4 Тестирование модулей. Часть 1 (Графический матери
+ал / Тестирование
+ []
+
+
+Underfull \hbox (badness 1675) in paragraph at lines 1--1
+\TU/TimesNewRoman(0)/m/n/14.4 Тестирование модулей. Часть 2 (Графический матери
+ал / Тестирование
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--1
+
+ []
+
+[9] [10]) (./Резюме.tex [11] [12] [13]) (./Введение.tex [14]
+Underfull \hbox (badness 1424) in paragraph at lines 10--11
+\TU/TimesNewRoman(0)/m/n/14.4 мятся применять микросервисную архитектуру, позво
+ляющую создавать
+ []
+
+[15]
+Underfull \hbox (badness 1565) in paragraph at lines 15--16
+\TU/TimesNewRoman(0)/m/n/14.4 сенджеров, систем уведомлений и автоматической ге
+нерации договоров
+ []
+
+\c=\count359
+\last=\count360
+\pnul=\count361
+[16]
+Underfull \hbox (badness 1052) in paragraph at lines 31--32
+[]\TU/TimesNewRoman(0)/m/it/14.4 В третьем разделе \TU/TimesNewRoman(0)/m/n/14.
+4 на стадии технического проектирования пред-
+ []
+
+) (./Анализ.tex [17]
+Underfull \hbox (badness 1152) in paragraph at lines 22--23
+[]\TU/TimesNewRoman(0)/m/n/14.4 Экономическая эффективность. Пользователи получ
+ают возмож-
+ []
+
+[18]
+Underfull \hbox (badness 1354) in paragraph at lines 25--26
+[]\TU/TimesNewRoman(0)/m/n/14.4 Широкий выбор предложений. Пользователи получаю
+т возмож-
+ []
+
+[19] [20]
+Underfull \hbox (badness 1748) in paragraph at lines 62--63
+[]\TU/TimesNewRoman(0)/m/n/14.4 Модель C2C (Consumer-to-Consumer) предполагает 
+взаимодействие
+ []
+
+[21] [22] [23] [24]
+Overfull \hbox (13.19835pt too wide) in paragraph at lines 143--143
+ []|\TU/TimesNewRoman(0)/m/n/14.4 Проектируемая 
+ []
+
+
+Overfull \hbox (13.19835pt too wide) in paragraph at lines 143--143
+ []|\TU/TimesNewRoman(0)/m/n/14.4 Проектируемая 
+ []
+
+
+Overfull \hbox (4.92961pt too wide) in paragraph at lines 143--143
+\TU/TimesNewRoman(0)/m/n/14.4 бронирование|  
+ []
+
+
+Overfull \hbox (1.7304pt too wide) in paragraph at lines 143--143
+[]|\TU/TimesNewRoman(0)/m/n/14.4 Верификация 
+ []
+
+[25]) (./ТехЗадание.tex [26]
+Underfull \hbox (badness 2617) in paragraph at lines 15--16
+[]\TU/TimesNewRoman(0)/m/n/14.4 проектирование и реализация подсистемы генераци
+и договоров
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 46--46
+[]|\TU/TimesNewRoman(0)/m/n/14.4 Отметка сообщений как прочи-
+ []
+
+
+Underfull \hbox (badness 2932) in paragraph at lines 46--46
+[]|\TU/TimesNewRoman(0)/m/n/14.4 WebSocket-соединение для уве-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\TU/TimesNewRoman(0)/m/n/14.4 Демонстрационная электронная
+ []
+
+[27] [28] [29] [30] [31]
+Underfull \hbox (badness 1675) in paragraph at lines 54--55
+[]\TU/Verdana(0)/m/n/14.4 POST /api/chats/conversations/ \TU/TimesNewRoman(0)/m
+/n/14.4 — создание нового чата с указанным
+ []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 55--56
+[]\TU/Verdana(0)/m/n/14.4 GET /api/chats/conversations/{id}/ \TU/TimesNewRoman(
+0)/m/n/14.4 — получение содержимого чата со
+ []
+
+
+Underfull \hbox (badness 2189) in paragraph at lines 56--57
+[]\TU/Verdana(0)/m/n/14.4 POST /api/chats/conversations/{id}/messages/ \TU/Time
+sNewRoman(0)/m/n/14.4 — отправка нового сооб-
+ []
+
+[32]
+Underfull \hbox (badness 1092) in paragraph at lines 58--59
+[]\TU/Verdana(0)/m/n/14.4 GET /api/chats/support-faq/ \TU/TimesNewRoman(0)/m/n/
+14.4 — получение структурированного набора
+ []
+
+
+Underfull \hbox (badness 5417) in paragraph at lines 63--64
+[]\TU/Verdana(0)/m/n/14.4 ws/chat/{chat_id}/ \TU/TimesNewRoman(0)/m/n/14.4 — пе
+рсональное подключение к чату; сервер
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 63--64
+\TU/TimesNewRoman(0)/m/n/14.4 проверяет принадлежность пользователя чату; подде
+рживаются события
+ []
+
+
+Underfull \hbox (badness 3701) in paragraph at lines 68--69
+[]\TU/Verdana(0)/m/n/14.4 GET /api/notifications/ \TU/TimesNewRoman(0)/m/n/14.4
+ — получение списка уведомлений текущего
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--76
+[]\TU/TimesNewRoman(0)/m/n/14.4 Подсистема уведомлений предоставляет следующий 
+WebSocket-
+ []
+
+[33]
+Underfull \hbox (badness 3568) in paragraph at lines 95--96
+[]\TU/Verdana(0)/m/n/14.4 Notification \TU/TimesNewRoman(0)/m/n/14.4 — уведомле
+ние пользователя (поля: получатель, тип
+ []
+
+
+Underfull \hbox (badness 4120) in paragraph at lines 95--96
+\TU/TimesNewRoman(0)/m/n/14.4 события, текст сообщения, метаданные в формате JS
+ON для навига-
+ []
+
+
+Underfull \hbox (badness 6608) in paragraph at lines 95--96
+\TU/TimesNewRoman(0)/m/n/14.4 ции на клиенте, признак прочтения, дата создания)
+. Поддерживают-
+ []
+
+[34]
+File: images/diaprec.eps Graphic file (type eps)
+<images/diaprec.eps>
+ [35] [36]
+Underfull \hbox (badness 4416) in paragraph at lines 156--156
+[]\TU/TimesNewRoman(0)/b/n/14.4 2.4.2 Чат между пользователями с возможностью о
+тправить
+ []
+
+[37]
+Underfull \hbox (badness 1043) in paragraph at lines 196--197
+[]\TU/TimesNewRoman(0)/m/n/14.4 При необходимости пользователь переходит в соот
+ветствующий
+ []
+
+) (./ТехПроект.tex [38]
+Underfull \hbox (badness 6110) in paragraph at lines 8--9
+[]\TU/TimesNewRoman(0)/m/n/14.4 Модуль является частью клиент-серверной архитек
+туры онлайн-
+ []
+
+
+Underfull \hbox (badness 3375) in paragraph at lines 10--11
+[]\TU/TimesNewRoman(0)/m/n/14.4 Серверная часть реализована на языке Python с и
+спользованием
+ []
+
+
+Underfull \hbox (badness 5475) in paragraph at lines 10--11
+\TU/TimesNewRoman(0)/m/n/14.4 фреймворка Django. Для построения REST API исполь
+зуется Django
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 10--11
+\TU/TimesNewRoman(0)/m/n/14.4 REST Framework, а для поддержки WebSocket-соедине
+ний применяется
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 10--11
+\TU/TimesNewRoman(0)/m/n/14.4 в реляционной базе данных. Для обмена событиями м
+ежду WebSocket-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[]\TU/TimesNewRoman(0)/m/n/14.4 подсистема договоров, обеспечивающая формирован
+ие PDF-
+ []
+
+File: images/canvas.eps Graphic file (type eps)
+<images/canvas.eps>
+[39]
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]\TU/TimesNewRoman(0)/b/n/14.4 3.2.1 Описание используемых технологий и языков
+
+ []
+
+[40]
+Underfull \hbox (badness 3930) in paragraph at lines 49--50
+[]\TU/TimesNewRoman(0)/m/n/14.4 Развёртывание проекта выполнялось с использован
+ием Docker и
+ []
+
+[41] [42] [43]
+Underfull \hbox (badness 1215) in paragraph at lines 91--92
+[]\TU/TimesNewRoman(0)/m/n/14.4 Для автоматического формирования договора аренд
+ы используется
+ []
+
+[44] [45] [46] [47] [48] [49] [50] [51] [52]
+Overfull \hbox (6.82149pt too wide) in paragraph at lines 414--414
+[] \TU/Verdana(0)/m/n/14.4 "preview_text": "ДОГОВОР АРЕНДЫ № AR-31-A1B2C3D4\n\n
+Предмет аренды: Дрель\n...",[] 
+ []
+
+[53]
+Overfull \hbox (6.82149pt too wide) in paragraph at lines 444--444
+[] \TU/Verdana(0)/m/n/14.4 "preview_text": "ДОГОВОР АРЕНДЫ № AR-31-A1B2C3D4\n\n
+Предмет аренды: Дрель\n...",[] 
+ []
+
+[54]
+Overfull \hbox (10.36522pt too wide) in paragraph at lines 476--476
+[]  \TU/Verdana(0)/m/n/14.4 "preview_text": "ДОГОВОР АРЕНДЫ № AR-31-A1B2C3D4\n\
+nПредмет аренды: Дрель\n...",[] 
+ []
+
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+[]\TU/TimesNewRoman(0)/m/n/14.4 WebSocket-маршруты объявлены в файлах chats/rou
+ting.py и
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+\TU/TimesNewRoman(0)/m/n/14.4 notifications/routing.py и подключаются в asgi.py
+ через URLRouter.
+ []
+
+[56] [57] [58] [59] [60]
+Underfull \hbox (badness 1635) in paragraph at lines 626--627
+[]\TU/TimesNewRoman(0)/m/n/14.4 Надёжность подсистемы уведомлений обеспечиваетс
+я разделением
+ []
+
+[61]
+Underfull \hbox (badness 10000) in paragraph at lines 633--634
+[]\TU/TimesNewRoman(0)/m/n/14.4 Проверка членства пользователя в чате выполняет
+ся как при
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 633--634
+\TU/TimesNewRoman(0)/m/n/14.4 WebSocket-подключении, так и при HTTP-операциях. 
+Это защищает
+ []
+
+[62] [63]) (./РабочийПроект.tex [64]
+Underfull \hbox (badness 5175) in paragraph at lines 3--4
+[]\TU/TimesNewRoman(0)/m/n/14.4 В процессе разработки были реализованы три само
+стоятельных
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\TU/TimesNewRoman(0)/m/n/14.4 Django-приложения модуля взаимодействия с пользов
+ателем: \TU/Verdana(0)/m/n/14.4 chats\TU/TimesNewRoman(0)/m/n/14.4 ,
+ []
+
+[65]
+Overfull \hbox (9.52205pt too wide) in paragraph at lines 59--59
+[]|\TU/TimesNewRoman(0)/m/n/10.95 ConversationMessageCreateView. 
+ []
+
+[66]
+Underfull \hbox (badness 1297) in paragraph at lines 61--62
+[]\TU/TimesNewRoman(0)/m/n/14.4 Описание сериализаторов приложения \TU/Verdana(
+0)/m/n/14.4 chats \TU/TimesNewRoman(0)/m/n/14.4 представлено в табли-
+ []
+
+[67]
+Underfull \hbox (badness 1057) in paragraph at lines 75--76
+[]\TU/TimesNewRoman(0)/m/n/14.4 Описание методов WebSocket-консьюмера \TU/Verda
+na(0)/m/n/14.4 ChatConsumer \TU/TimesNewRoman(0)/m/n/14.4 приложения
+ []
+
+[68] [69]
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+[]\TU/TimesNewRoman(0)/m/n/14.4 Описание функций сервисного модуля \TU/Verdana(
+0)/m/n/14.4 services.py \TU/TimesNewRoman(0)/m/n/14.4 приложения
+ []
+
+[70] [71] [72] [73]
+Underfull \hbox (badness 2762) in paragraph at lines 189--189
+[]  \TU/TimesNewRoman(0)/m/n/14.4 Таблица 4.10 – Описание методов NotificationC
+onsumer приложения
+ []
+
+[74]
+Underfull \hbox (badness 1845) in paragraph at lines 197--198
+[]\TU/TimesNewRoman(0)/m/n/14.4 Описание вспомогательных функций модуля \TU/Ver
+dana(0)/m/n/14.4 models.py \TU/TimesNewRoman(0)/m/n/14.4 приложения
+ []
+
+[75] [76] [77] [78] [79] [80] [81]
+Underfull \hbox (badness 3108) in paragraph at lines 328--330
+[]\TU/TimesNewRoman(0)/m/n/14.4 Функциональная верификация должна подтверждать 
+корректность
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 328--330
+\TU/TimesNewRoman(0)/m/n/14.4 пользовательских сценариев. Для подсистемы уведом
+лений проверяются
+ []
+
+[82] [83]
+Underfull \hbox (badness 1817) in paragraph at lines 394--395
+[]\TU/TimesNewRoman(0)/m/n/14.4 Модульное и интеграционное тестирование разрабо
+танных прило-
+ []
+
+[84] [85]
+Overfull \hbox (56.69458pt too wide) in paragraph at lines 416--416
+[]\TU/Verdana(0)/m/n/14.4 python manage.py test chats notifications contracts -
+-settings=arenda_site.test_settings --verbosity=2[] 
+ []
+
+(c:/texlive/2026/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+) [86]
+Overfull \vbox (18.45316pt too high) has occurred while \output is active []
+
+
+[87]
+Underfull \hbox (badness 1496) in paragraph at lines 455--456
+[]\TU/TimesNewRoman(0)/m/n/14.4 Результаты тестирования приложения \TU/Verdana(
+0)/m/n/14.4 chats \TU/TimesNewRoman(0)/m/n/14.4 подтверждают коррект-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+[]\TU/TimesNewRoman(0)/b/n/14.4 4.7 Системное тестирование модуля взаимодействи
+я с
+ []
+
+[88]) (./Заключение.tex [89] [90] [91]
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+[]\TU/TimesNewRoman(0)/m/n/14.4 Выполнено тестирование разработанных модулей ср
+едствами
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 17--18
+\TU/TimesNewRoman(0)/m/n/14.4 Django и Django REST Framework. Проверены основны
+е пользователь-
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 17--18
+\TU/TimesNewRoman(0)/m/n/14.4 ские сценарии, корректность REST API, создание ув
+едомлений, работа
+ []
+
+) (./СписокИсточников.tex [92] [93]
+Underfull \hbox (badness 1072) in paragraph at lines 19--20
+[]\TU/TimesNewRoman(0)/m/n/14.4 Кочарян, А.С. ДОГОВОР КУПЛИ-ПРОДАЖИ // Вестник 
+НИБ.
+ []
+
+[94] [95]
+Underfull \hbox (badness 1038) in paragraph at lines 40--41
+[]\TU/TimesNewRoman(0)/m/n/14.4 Дронов В. А. Фишерман Л. В. Git. Практическое р
+уководство.
+ []
+
+[96]) (./Плакаты.tex [97] [98]
+File: images/Ramka_VKR (1).png Graphic file (type bmp)
+<images/Ramka_VKR (1).png>
+File: images/tasks (2).png Graphic file (type bmp)
+<images/tasks (2).png>
+ [99
+
+]
+File: images/concurent (3).png Graphic file (type bmp)
+<images/concurent (3).png>
+ [100]
+File: images/components (4).png Graphic file (type bmp)
+<images/components (4).png>
+ [101]
+File: images/diaprec (5).png Graphic file (type bmp)
+<images/diaprec (5).png>
+ [102]
+File: images/diacomp (6).png Graphic file (type bmp)
+<images/diacomp (6).png>
+ [103]
+File: images/api-table (7).png Graphic file (type bmp)
+<images/api-table (7).png>
+ [104]
+File: images/test (8).png Graphic file (type bmp)
+<images/test (8).png>
+ [105]
+File: images/test (9).png Graphic file (type bmp)
+<images/test (9).png>
+
+[106]
+File: images/end (10).png Graphic file (type bmp)
+<images/end (10).png>
+ [107] [108]) (./Код.tex
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 3.
+ (./chats_consumers.py [109
+
+] [110])
+(./chats_models.py) (./chats_views.py [111] [112] [113]) (./contracts_models.py
+[114] [115] [116] [117]) (./contracts_views.py [118])
+(./notifications_consumers.py [119]) (./notifications_models.py)
+(./notifications_services.py [120] [121] [122]) [123]
+Overfull \hbox (4.70218pt too wide) in paragraph at lines 29--44
+[] 
+ []
+
+) [124] (./main.aux)
+ ***********
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+ ***********
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: EA9F8E90ED76CB5BA08208B4D478076C;25384.
+ ) 
+Here is how much of TeX's memory you used:
+ 17459 strings out of 467812
+ 332492 string characters out of 5427135
+ 1230554 words of memory out of 5000000
+ 46240 multiletter control sequences out of 15000+600000
+ 629266 words of font info for 78 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 93i,10n,110p,901b,2148s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on main.pdf (124 pages).

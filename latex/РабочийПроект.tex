@@ -1,0 +1,502 @@
+\section{Рабочий проект}
+
+В процессе разработки были реализованы три самостоятельных Django-приложения модуля взаимодействия с пользователем: \texttt{chats}, \texttt{notifications} и \texttt{contracts}. Каждое приложение включает модели данных, сериализаторы, представления REST API, а также WebSocket-компоненты или сервисные функции в зависимости от назначения.
+
+\subsection{Приложение chats}
+
+\texttt{chats} --- приложение, реализующее подсистему обмена сообщениями между пользователями платформы. Поддерживает создание диалогов с привязкой к объявлению, отправку текстовых сообщений и изображений, доставку новых сообщений в режиме реального времени через WebSocket, а также отметку сообщений как прочитанных. Приложение состоит из моделей данных (\texttt{models.py}), представлений REST API (\texttt{views.py}), WebSocket-консьюмера (\texttt{consumers.py}), сериализаторов (\texttt{serializers.py}) и вспомогательного модуля (\texttt{utils.py}).
+
+Описание моделей данных приложения \texttt{chats} представлено в таблице~\ref{tab:chats_models}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание моделей данных приложения chats \label{tab:chats_models}}\\ \hline
+\centrow Модель / поле & \centrow Тип & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:chats_models}}
+\centrow Модель / поле & \centrow Тип & \centrow Описание \\ \hline
+\finishhead
+\leftrow Chat & \leftrow Модель & \leftrow Диалог между двумя пользователями платформы. \\ \hline
+\leftrow users & \leftrow ManyToManyField & \leftrow Участники диалога. \\ \hline
+\leftrow item & \leftrow ForeignKey (Item) & \leftrow Объявление, к которому привязан чат. Необязательное поле. \\ \hline
+\leftrow created\_at & \leftrow DateTimeField & \leftrow Дата и время создания диалога. \\ \hline
+\leftrow Message & \leftrow Модель & \leftrow Сообщение, отправленное в рамках диалога. \\ \hline
+\leftrow chat & \leftrow ForeignKey (Chat) & \leftrow Диалог, к которому относится сообщение. \\ \hline
+\leftrow sender & \leftrow ForeignKey (User) & \leftrow Пользователь, отправивший сообщение. \\ \hline
+\leftrow text & \leftrow TextField & \leftrow Текстовое содержимое сообщения. \\ \hline
+\leftrow image & \leftrow ImageField & \leftrow Прикреплённое изображение. Необязательное поле. \\ \hline
+\leftrow created\_at & \leftrow DateTimeField & \leftrow Дата и время отправки сообщения. \\ \hline
+\leftrow is\_read & \leftrow BooleanField & \leftrow Признак прочтения сообщения получателем. \\ \hline
+\end{xltabular}
+
+Описание вспомогательных функций модуля \texttt{views.py} приложения \texttt{chats} представлено в таблице~\ref{tab:chats_helpers}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание вспомогательных функций views.py приложения chats \label{tab:chats_helpers}}\\ \hline
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:chats_helpers}}
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow mark\_chat\_messages\_read & \leftrow chat, user & \leftrow Находит непрочитанные сообщения в чате, не отправленные текущим пользователем, помечает их как прочитанные и возвращает список их идентификаторов. \\ \hline
+\leftrow broadcast\_messages\_read & \leftrow chat\_id, message\_ids, read\_by\_user\_id & \leftrow Рассылает через channel layer группе чата событие \texttt{messages\_read} с идентификаторами прочитанных сообщений и идентификатором пользователя. \\ \hline
+\end{xltabular}
+
+Описание представлений REST API приложения \texttt{chats} представлено в таблице~\ref{tab:chats_views}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание представлений REST API приложения chats \label{tab:chats_views}}\\ \hline
+\centrow Класс / метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:chats_views}}
+\centrow Класс / метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\finishhead
+\leftrow ConversationListCreateView.\allowbreak get & \leftrow GET /conversations/ & \leftrow Возвращает список чатов текущего пользователя, аннотированных датой последнего сообщения, упорядоченных по убыванию активности. \\ \hline
+\leftrow ConversationListCreateView.\allowbreak post & \leftrow POST /conversations/ & \leftrow Создаёт новый диалог с указанным пользователем и опциональной привязкой к объявлению. Если чат уже существует, возвращает его. \\ \hline
+\leftrow ConversationDetailView.\allowbreak get & \leftrow GET /conversations/\{id\}/ & \leftrow Возвращает содержимое чата со списком сообщений. При открытии помечает входящие сообщения как прочитанные и рассылает событие прочтения. \\ \hline
+\leftrow ConversationMessageCreateView.\allowbreak post & \leftrow POST /conversations/\{id\}/\allowbreak messages/ & \leftrow Сохраняет новое сообщение (текст и/или изображение), создаёт уведомление получателю и рассылает событие \texttt{chat\_message} через WebSocket. \\ \hline
+\leftrow MarkReadView.\allowbreak post & \leftrow POST /conversations/\{id\}/\allowbreak mark\_read/ & \leftrow Явно помечает непрочитанные сообщения чата как прочитанные и рассылает событие через WebSocket. \\ \hline
+\leftrow SupportFAQView.\allowbreak get & \leftrow GET /support-faq/ & \leftrow Возвращает структурированный набор часто задаваемых вопросов с пошаговыми инструкциями. \\ \hline
+\end{xltabular}
+
+Описание сериализаторов приложения \texttt{chats} представлено в таблице~\ref{tab:chats_serializers}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание сериализаторов приложения chats \label{tab:chats_serializers}}\\ \hline
+\centrow Сериализатор / поле & \centrow Тип & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:chats_serializers}}
+\centrow Сериализатор / поле & \centrow Тип & \centrow Описание \\ \hline
+\finishhead
+\leftrow MessageSerializer & \leftrow ModelSerializer & \leftrow Сериализатор для чтения сообщений. Включает идентификатор и имя отправителя, текст, ссылку на изображение, дату и признак прочтения. \\ \hline
+\leftrow MessageCreateSerializer & \leftrow ModelSerializer & \leftrow Сериализатор для создания сообщения. Проверяет, что хотя бы одно из полей \texttt{text} или \texttt{image} заполнено. \\ \hline
+\leftrow ChatSerializer & \leftrow ModelSerializer & \leftrow Сериализатор чата. Вычисляемые поля: \texttt{other\_user} (данные собеседника), \texttt{unread\_count} (число непрочитанных), \texttt{last\_message} (последнее сообщение), \texttt{item} (связанное объявление). \\ \hline
+\end{xltabular}
+
+Описание методов WebSocket-консьюмера \texttt{ChatConsumer} приложения \texttt{chats} представлено в таблице~\ref{tab:chats_consumer}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание методов ChatConsumer приложения chats \label{tab:chats_consumer}}\\ \hline
+\centrow Метод & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:chats_consumer}}
+\centrow Метод & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow connect & \leftrow --- & \leftrow Устанавливает WebSocket-соединение. Проверяет аутентификацию пользователя, существование чата и членство в нём. Добавляет канал в группу чата. \\ \hline
+\leftrow disconnect & \leftrow close\_code & \leftrow Удаляет канал из группы чата при разрыве соединения. \\ \hline
+\leftrow receive & \leftrow text\_data & \leftrow Обрабатывает входящее сообщение от клиента. При действии \texttt{mark\_read} помечает сообщения прочитанными. При наличии текста сохраняет сообщение и рассылает его группе. \\ \hline
+\leftrow chat\_message & \leftrow event & \leftrow Доставляет клиенту событие \texttt{new\_message} с данными нового сообщения. \\ \hline
+\leftrow messages\_read & \leftrow event & \leftrow Доставляет клиенту событие \texttt{messages\_read} с идентификаторами прочитанных сообщений. \\ \hline
+\leftrow save\_message & \leftrow user, text & \leftrow Сохраняет текстовое сообщение в базу данных и инициирует отправку уведомления получателю. \\ \hline
+\leftrow serialize\_message & \leftrow message & \leftrow Преобразует объект сообщения в словарь для передачи через WebSocket. \\ \hline
+\leftrow chat\_exists & \leftrow --- & \leftrow Проверяет существование чата по идентификатору из URL. \\ \hline
+\leftrow is\_chat\_member & \leftrow --- & \leftrow Проверяет, является ли текущий пользователь участником чата. \\ \hline
+\leftrow mark\_messages\_read & \leftrow user & \leftrow Помечает непрочитанные входящие сообщения как прочитанные и возвращает их идентификаторы. \\ \hline
+\end{xltabular}
+
+\subsection{Приложение notifications}
+
+\texttt{notifications} --- приложение, реализующее двухканальную систему уведомлений пользователей. Первый канал --- всплывающие уведомления на сайте, доставляемые через персональное WebSocket-соединение в реальном времени. Второй канал --- email-оповещения, отправляемые через SMTP при ключевых событиях платформы. Приложение состоит из модели данных (\texttt{models.py}), сервисного слоя (\texttt{services.py}), функций отправки email (\texttt{email.py}), представлений REST API (\texttt{views.py}), WebSocket-консьюмера (\texttt{consumers.py}), сериализатора (\texttt{serializers.py}) и управляющей команды (\texttt{send\_return\_reminders}).
+
+Описание модели данных приложения \texttt{notifications} представлено в таблице~\ref{tab:notif_model}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание модели данных приложения notifications \label{tab:notif_model}}\\ \hline
+\centrow Модель / поле & \centrow Тип & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:notif_model}}
+\centrow Модель / поле & \centrow Тип & \centrow Описание \\ \hline
+\finishhead
+\leftrow Notification & \leftrow Модель & \leftrow Уведомление, адресованное конкретному пользователю платформы. \\ \hline
+\leftrow \quad user & \leftrow ForeignKey (User) & \leftrow Получатель уведомления. \\ \hline
+\leftrow \quad type & \leftrow CharField & \leftrow Тип события. Допустимые значения: \texttt{booking\_created}, \texttt{booking\_confirmed}, \texttt{booking\_cancelled}, \texttt{payment\_confirmed}, \texttt{return\_reminder}, \texttt{new\_message}, \texttt{new\_review}, \texttt{item\_moderation\_request}, \texttt{item\_moderation\_approved}, \texttt{item\_moderation\_rejected}. \\ \hline
+\leftrow \quad message & \leftrow TextField & \leftrow Текст уведомления, отображаемый пользователю. \\ \hline
+\leftrow \quad metadata & \leftrow JSONField & \leftrow Дополнительные данные для навигации на клиенте: направление перехода, идентификаторы бронирования, объявления, чата. \\ \hline
+\leftrow \quad is\_read & \leftrow BooleanField & \leftrow Признак прочтения уведомления. \\ \hline
+\leftrow \quad created\_at & \leftrow DateTimeField & \leftrow Дата и время создания уведомления. \\ \hline
+\end{xltabular}
+
+Описание функций сервисного модуля \texttt{services.py} приложения \texttt{notifications} представлено в таблице~\ref{tab:notif_services}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание функций модуля services.py приложения notifications \label{tab:notif_services}}\\ \hline
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:notif_services}}
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow create\_notification & \leftrow user, notification\_type, message, metadata & \leftrow Создаёт запись уведомления в базе данных и немедленно доставляет его пользователю через WebSocket, вызывая \texttt{broadcast\_notification}. \\ \hline
+\leftrow broadcast\_notification & \leftrow notification & \leftrow Отправляет сериализованный объект уведомления в персональную channel-группу пользователя. Ошибки доставки не прерывают сохранение уведомления. \\ \hline
+\leftrow notify\_booking\_created & \leftrow booking & \leftrow Создаёт уведомление арендодателю о новой заявке на бронирование и отправляет соответствующее email-сообщение. \\ \hline
+\leftrow notify\_booking\_confirmed & \leftrow booking & \leftrow Создаёт уведомление арендатору о подтверждении бронирования и отправляет соответствующее email-сообщение. \\ \hline
+\leftrow notify\_payment\_confirmed & \leftrow booking & \leftrow Создаёт уведомление арендодателю о поступлении оплаты и отправляет соответствующее email-сообщение. \\ \hline
+\leftrow notify\_booking\_cancelled & \leftrow booking, cancelled\_by & \leftrow Создаёт уведомления обеим сторонам сделки об отмене бронирования с указанием инициатора отмены и отправляет email-оповещения. \\ \hline
+\leftrow notify\_return\_reminder & \leftrow booking & \leftrow Создаёт уведомление арендатору с напоминанием о необходимости возврата вещи и отправляет соответствующее email-сообщение. \\ \hline
+\leftrow notify\_new\_message & \leftrow message & \leftrow Создаёт уведомления и отправляет email-оповещения всем участникам чата, кроме отправителя сообщения. \\ \hline
+\leftrow notify\_new\_review & \leftrow review & \leftrow Создаёт уведомление арендодателю о новом отзыве с оценкой и комментарием, а также отправляет email-оповещение. \\ \hline
+\end{xltabular}
+
+Описание функций модуля \texttt{email.py} приложения \texttt{notifications} представлено в таблице~\ref{tab:notif_email}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание функций модуля email.py приложения notifications \label{tab:notif_email}}\\ \hline
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:notif_email}}
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow \_send & \leftrow to\_email, subject, message & \leftrow Базовая функция отправки email через Django \texttt{send\_mail}. При пустом адресе или недоступности почтового сервера молча завершается, не прерывая основной процесс. \\ \hline
+\leftrow send\_password\_\allowbreak reset\_code & \leftrow user, code & \leftrow Отправляет пользователю шестизначный код для сброса пароля с указанием срока действия кода. \\ \hline
+\leftrow send\_booking\_created & \leftrow booking & \leftrow Отправляет арендодателю email о новой заявке на бронирование с указанием арендатора, дат и суммы аренды. \\ \hline
+\leftrow send\_booking\_confirmed & \leftrow booking & \leftrow Отправляет арендатору email о подтверждении бронирования с датами и итоговой суммой. \\ \hline
+\leftrow send\_payment\_confirmed & \leftrow booking & \leftrow Отправляет арендодателю email о поступлении оплаты от арендатора с деталями бронирования. \\ \hline
+\leftrow send\_booking\_cancelled & \leftrow booking, cancelled\_by & \leftrow Отправляет обеим сторонам email об отмене бронирования с указанием инициатора. \\ \hline
+\leftrow send\_return\_reminder & \leftrow booking & \leftrow Отправляет арендатору email с напоминанием о необходимости возврата вещи на следующий день. \\ \hline
+\leftrow send\_new\_message & \leftrow recipient, sender\_username & \leftrow Отправляет получателю email с уведомлением о новом сообщении в чате. \\ \hline
+\leftrow send\_new\_review & \leftrow booking & \leftrow Отправляет арендодателю email с уведомлением о новом отзыве о товаре. \\ \hline
+\leftrow send\_item\_moderation\_\allowbreak request\_to\_\allowbreak admins & \leftrow moderation\_\allowbreak request, admins & \leftrow Отправляет всем администраторам email с деталями новой заявки на модерацию объявления. \\ \hline
+\leftrow send\_item\_moderation\_\allowbreak approved & \leftrow user, item\_title & \leftrow Отправляет пользователю email об одобрении и публикации объявления. \\ \hline
+\leftrow send\_item\_moderation\_\allowbreak rejected & \leftrow user, item\_title, reason & \leftrow Отправляет пользователю email об отклонении заявки на публикацию объявления с указанием причины. \\ \hline
+\end{xltabular}
+
+Описание представлений REST API приложения \texttt{notifications} представлено в таблице~\ref{tab:notif_views}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание представлений REST API приложения notifications \label{tab:notif_views}}\\ \hline
+\centrow Метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:notif_views}}
+\centrow Метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\finishhead
+\leftrow NotificationViewSet.list & \leftrow GET /notifications/ & \leftrow Возвращает список уведомлений текущего пользователя в порядке убывания даты создания. \\ \hline
+\leftrow NotificationViewSet.retrieve & \leftrow GET /notifications/\{id\}/ & \leftrow Возвращает данные одного уведомления по идентификатору. \\ \hline
+\leftrow NotificationViewSet.\allowbreak unread\_count & \leftrow GET /notifications/\allowbreak unread\_count/ & \leftrow Возвращает количество непрочитанных уведомлений текущего пользователя. \\ \hline
+\leftrow NotificationViewSet.\allowbreak mark\_read & \leftrow POST /notifications/\{id\}/\allowbreak mark\_read/ & \leftrow Помечает указанное уведомление как прочитанное и возвращает его обновлённые данные. \\ \hline
+\leftrow NotificationViewSet.\allowbreak mark\_all\_read & \leftrow POST /notifications/\allowbreak mark\_all\_read/ & \leftrow Помечает все непрочитанные уведомления пользователя как прочитанные и возвращает количество обновлённых записей. \\ \hline
+\end{xltabular}
+
+Описание методов WebSocket-консьюмера \texttt{NotificationConsumer} приложения \texttt{notifications} представлено в таблице~\ref{tab:notif_consumer}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание методов NotificationConsumer приложения notifications \label{tab:notif_consumer}}\\ \hline
+\centrow Метод & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:notif_consumer}}
+\centrow Метод & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow connect & \leftrow --- & \leftrow Устанавливает WebSocket-соединение. Проверяет аутентификацию пользователя. Добавляет канал в персональную группу \texttt{notifications\_\{user\_id\}}. \\ \hline
+\leftrow disconnect & \leftrow close\_code & \leftrow Удаляет канал из персональной группы при разрыве соединения. \\ \hline
+\leftrow notification\_created & \leftrow event & \leftrow Доставляет клиенту событие \texttt{notification\_created} с полными данными нового уведомления. \\ \hline
+\end{xltabular}
+
+Управляющая команда \texttt{send\_return\_reminders} реализована в виде Django management command и предназначена для планировщика задач. При запуске выбирает из базы данных все подтверждённые бронирования с датой окончания, приходящейся на следующий день, и для каждого вызывает \texttt{notify\_return\_reminder}, отправляя email и создавая сайт-уведомление арендатору.
+
+\subsection{Приложение contracts}
+
+\texttt{contracts} --- приложение, реализующее подсистему автоматической генерации договоров аренды и их демонстрационного подписания. При первом обращении к договору по подтверждённому бронированию система автоматически формирует уникальный номер документа и создаёт PDF-файл, содержащий полный текст договора с реквизитами сторон. После подписания договора обеими сторонами PDF перегенерируется с заполненными блоками электронной подписи. Приложение состоит из модели данных с методами генерации PDF (\texttt{models.py}), представлений REST API (\texttt{views.py}) и сериализаторов (\texttt{serializers.py}).
+
+Описание вспомогательных функций модуля \texttt{models.py} приложения \texttt{contracts} представлено в таблице~\ref{tab:contracts_helpers}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание вспомогательных функций models.py приложения contracts \label{tab:contracts_helpers}}\\ \hline
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:contracts_helpers}}
+\centrow Название функции & \centrow Аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow \_ensure\_cyrillic\_fonts & \leftrow --- & \leftrow Последовательно проверяет наличие кандидатов кириллических TTF-шрифтов на файловой системе. Регистрирует первый доступный шрифт в ReportLab и возвращает имена обычного, жирного и курсивного начертаний. \\ \hline
+\leftrow \_party\_description & \leftrow user & \leftrow Формирует строку описания стороны договора и словарь реквизитов в зависимости от организационно-правовой формы пользователя: физическое лицо, индивидуальный предприниматель или юридическое лицо. \\ \hline
+\leftrow \_eds\_block & \leftrow signer\_name, signed\_at, signature\_code, role\_label & \leftrow Формирует строку блока электронной цифровой подписи с именем подписанта, датой и кодом подписи либо статус «Не подписан» при отсутствии данных. \\ \hline
+\end{xltabular}
+
+Описание полей и методов модели \texttt{Contract} приложения \texttt{contracts} представлено в таблице~\ref{tab:contracts_model}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание полей и методов модели Contract \label{tab:contracts_model}}\\ \hline
+\centrow Поле / метод & \centrow Тип / аргументы & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:contracts_model}}
+\centrow Поле / метод & \centrow Тип / аргументы & \centrow Описание \\ \hline
+\finishhead
+\leftrow booking & \leftrow OneToOneField (Booking) & \leftrow Бронирование, к которому относится договор. \\ \hline
+\leftrow document\_number & \leftrow CharField & \leftrow Уникальный номер договора в формате \texttt{AR-\{год\}-\{booking\_id\}-\{UUID\}}. Генерируется автоматически при первом сохранении. \\ \hline
+\leftrow file & \leftrow FileField & \leftrow PDF-файл договора, хранящийся в директории \texttt{contracts/}. \\ \hline
+\leftrow is\_signed & \leftrow BooleanField & \leftrow Признак полного подписания договора обеими сторонами. \\ \hline
+\leftrow renter\_signer\_name & \leftrow CharField & \leftrow Имя подписанта со стороны арендатора. \\ \hline
+\leftrow renter\_signature\_code & \leftrow CharField & \leftrow Код демонстрационной электронной подписи арендатора. \\ \hline
+\leftrow renter\_signed\_at & \leftrow DateTimeField & \leftrow Дата и время подписания договора арендатором. \\ \hline
+\leftrow owner\_signer\_name & \leftrow CharField & \leftrow Имя подписанта со стороны арендодателя. \\ \hline
+\leftrow owner\_signature\_code & \leftrow CharField & \leftrow Код демонстрационной электронной подписи арендодателя. \\ \hline
+\leftrow owner\_signed\_at & \leftrow DateTimeField & \leftrow Дата и время подписания договора арендодателем. \\ \hline
+\leftrow signed\_at & \leftrow DateTimeField & \leftrow Дата и время полного подписания договора обеими сторонами. \\ \hline
+\leftrow create\_for\_booking & \leftrow booking & \leftrow Классовый метод. Создаёт договор для бронирования или возвращает существующий. Обеспечивает наличие сгенерированного PDF-файла. \\ \hline
+\leftrow generate\_document\_number & \leftrow --- & \leftrow Формирует уникальный номер документа на основе текущего года, идентификатора бронирования и фрагмента UUID. \\ \hline
+\leftrow build\_preview\_text & \leftrow --- & \leftrow Формирует текстовый предпросмотр договора для отображения в интерфейсе. Содержит стороны, предмет, период, суммы и блоки ЭЦП в виде обычного текста. \\ \hline
+\leftrow ensure\_generated\_file & \leftrow --- & \leftrow Вызывает \texttt{build\_pdf\_bytes}, сохраняет результат в файловое хранилище и фиксирует путь к файлу в базе данных. \\ \hline
+\leftrow can\_be\_opened & \leftrow --- & \leftrow Проверяет, что статус бронирования допускает работу с договором (\texttt{confirmed} или \texttt{completed}). \\ \hline
+\leftrow sign\_for\_user & \leftrow user, signer\_name, certificate\_pin & \leftrow Фиксирует подпись текущего пользователя: проверяет его роль, валидирует имя и PIN, записывает код и дату подписания. Если подписали оба участника, переводит договор в статус подписанного и перегенерирует PDF. \\ \hline
+\leftrow generate\_signature\_code & \leftrow role & \leftrow Генерирует уникальный демонстрационный код электронной подписи в формате \texttt{EDS-DEMO-\{ROLE\}-\{booking\_id\}-\{UUID\}}. \\ \hline
+\leftrow build\_pdf\_bytes & \leftrow --- & \leftrow Формирует полный PDF-файл договора с помощью ReportLab. Включает заголовок, преамбулу сторон, разделы договора, таблицу реквизитов и блоки ЭЦП. Возвращает байтовое содержимое файла. \\ \hline
+\leftrow \_amount\_words & \leftrow amount & \leftrow Вспомогательный статический метод. Форматирует числовую сумму для вставки в текст договора. \\ \hline
+\end{xltabular}
+
+Описание представлений REST API приложения \texttt{contracts} представлено в таблице~\ref{tab:contracts_views}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание представлений REST API приложения contracts \label{tab:contracts_views}}\\ \hline
+\centrow Метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:contracts_views}}
+\centrow Метод & \centrow HTTP-метод, маршрут & \centrow Описание \\ \hline
+\finishhead
+\leftrow ContractViewSet.get\_queryset & \leftrow --- & \leftrow Формирует базовый QuerySet договоров, фильтруя по участию текущего пользователя в качестве арендатора или арендодателя. \\ \hline
+\leftrow ContractViewSet.by\_booking & \leftrow GET /contracts/by-booking/\{booking\_id\}/ & \leftrow Возвращает или автоматически создаёт договор по идентификатору подтверждённого бронирования. Ответ содержит текстовый предпросмотр, ссылку на PDF, статус подписания и роль текущего пользователя. \\ \hline
+\leftrow ContractViewSet.sign & \leftrow POST /contracts/\{id\}/sign/ & \leftrow Принимает имя подписанта и PIN-код, фиксирует подпись текущего пользователя. После подписания обеими сторонами перегенерирует PDF. Возвращает обновлённые данные договора. \\ \hline
+\end{xltabular}
+
+Описание сериализаторов приложения \texttt{contracts} представлено в таблице~\ref{tab:contracts_serializers}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.30\textwidth}|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Описание сериализаторов приложения contracts \label{tab:contracts_serializers}}\\ \hline
+\centrow Сериализатор / поле & \centrow Тип & \centrow Описание \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:contracts_serializers}}
+\centrow Сериализатор / поле & \centrow Тип & \centrow Описание \\ \hline
+\finishhead
+\leftrow ContractSerializer & \leftrow ModelSerializer & \leftrow Полный сериализатор договора для чтения. Все поля доступны только на чтение. \\ \hline
+\leftrow \quad file\_url & \leftrow SerializerMethodField & \leftrow Абсолютный URL PDF-файла договора с учётом домена запроса. \\ \hline
+\leftrow \quad preview\_text & \leftrow SerializerMethodField & \leftrow Текстовый предпросмотр договора, формируемый методом \texttt{build\_preview\_text}. \\ \hline
+\leftrow \quad status & \leftrow SerializerMethodField & \leftrow Статус договора: \texttt{draft}, \texttt{partially\_signed} или \texttt{signed}. \\ \hline
+\leftrow \quad my\_role & \leftrow SerializerMethodField & \leftrow Роль текущего пользователя в договоре: \texttt{renter}, \texttt{owner} или \texttt{null}. \\ \hline
+\leftrow \quad my\_signed & \leftrow SerializerMethodField & \leftrow Признак того, подписал ли текущий пользователь договор со своей стороны. \\ \hline
+\leftrow ContractSignSerializer & \leftrow Serializer & \leftrow Сериализатор для приёма данных подписания договора. Поля: \texttt{signer\_name} и \texttt{certificate\_pin}. \\ \hline
+\end{xltabular}
+
+\subsection{Эксплуатация и развёртывание}
+
+\subsubsection{Локальное развёртывание}
+Проект рассчитан на запуск через Docker Compose. В составе инфраструктуры используются контейнеры приложения, базы данных PostgreSQL, Redis и reverse proxy. Такой подход упрощает развёртывание, так как окружение описано декларативно и не требует ручной настройки каждого сервиса на машине разработчика.
+
+Базовый порядок запуска:
+\begin{enumerate}
+    \item Подготовить переменные окружения.
+    \item Собрать контейнеры проекта.
+    \item Запустить Docker Compose.
+    \item Выполнить миграции базы данных.
+    \item Создать пользователя администратора при необходимости.
+    \item Проверить доступность API и WebSocket-маршрутов.
+\end{enumerate}
+
+\subsubsection{Параметры конфигурации}
+Ключевые параметры окружения:
+\begin{itemize}
+    \item \texttt{SECRET\_KEY} --- секретный ключ Django;
+    \item параметры подключения к PostgreSQL;
+    \item параметры Redis;
+    \item \texttt{EMAIL\_HOST} --- SMTP-сервер;
+    \item \texttt{EMAIL\_PORT} --- порт SMTP;
+    \item \texttt{EMAIL\_HOST\_USER} --- учётная запись отправителя;
+    \item \texttt{EMAIL\_HOST\_PASSWORD} --- пароль приложения или токен;
+    \item \texttt{MEDIA\_ROOT} --- директория хранения файлов, включая договоры и изображения сообщений;
+    \item \texttt{MEDIA\_URL} --- URL-префикс для доступа к медиафайлам.
+\end{itemize}
+
+\subsubsection{Конфигурация технических средств}
+Минимальная конфигурация для запуска проекта:
+\begin{itemize}
+    \item процессор с частотой от 2 ГГц;
+    \item оперативная память от 4 ГБ;
+    \item установленный Docker;
+    \item доступ к сети для отправки email и работы внешних интеграций;
+    \item свободное место на диске для базы данных и PDF-файлов.
+\end{itemize}
+
+\subsubsection{Наблюдаемость и сопровождение}
+Для сопровождения разработанных модулей рекомендуется:
+\begin{itemize}
+    \item вести журнал ошибок отправки email;
+    \item логировать ошибки WebSocket-подключений;
+    \item контролировать количество непрочитанных уведомлений;
+    \item отслеживать объём таблицы сообщений;
+    \item периодически очищать устаревшие временные данные;
+    \item выполнять резервное копирование PDF-договоров;
+    \item проверять корректность фоновой команды напоминаний о возврате.
+\end{itemize}
+
+\subsection{Верификация технического проекта}
+
+\subsubsection{Функциональная верификация}
+Функциональная верификация должна подтверждать корректность пользовательских сценариев. Для подсистемы уведомлений проверяются следующие случаи:
+\begin{itemize}
+    \item при создании бронирования создаётся уведомление арендодателю;
+    \item при подтверждении бронирования создаётся уведомление арендатору;
+    \item при отмене бронирования уведомления получают обе стороны;
+    \item при подтверждении оплаты создаётся уведомление арендодателю;
+    \item при приближении даты возврата создаётся напоминание арендатору;
+    \item пользователь может отметить одно уведомление как прочитанное;
+    \item пользователь может отметить все уведомления как прочитанные;
+    \item счётчик непрочитанных уведомлений возвращает корректное значение.
+\end{itemize}
+
+Для подсистемы чатов проверяются следующие случаи:
+\begin{itemize}
+    \item пользователь может создать диалог с владельцем товара;
+    \item нельзя создать диалог с самим собой;
+    \item диалоги по разным товарам разделяются;
+    \item сообщения сохраняются в базе данных;
+    \item пустое сообщение отклоняется;
+    \item сообщение с изображением принимается;
+    \item список диалогов сортируется по дате последнего сообщения;
+    \item входящие сообщения отмечаются как прочитанные.
+\end{itemize}
+
+Для подсистемы договоров проверяются следующие случаи:
+\begin{itemize}
+    \item участник сделки может получить договор по подтверждённому бронированию;
+    \item договор недоступен для бронирования в статусе ожидания;
+    \item договор создаётся один раз для одного бронирования;
+    \item арендатор может подписать договор;
+    \item арендодатель может подписать договор;
+    \item после подписания обеими сторонами договор получает статус подписанного;
+    \item PDF-файл договора создаётся и доступен по ссылке.
+\end{itemize}
+
+\subsubsection{Техническая верификация}
+Техническая верификация должна включать проверку API, WebSocket и операций с файлами.
+
+Для API проверяются:
+\begin{itemize}
+    \item HTTP-коды успешных и ошибочных ответов;
+    \item формат JSON-ответов;
+    \item корректность сериализуемых полей;
+    \item запрет доступа неавторизованным пользователям;
+    \item запрет доступа к чужим объектам.
+\end{itemize}
+
+Для WebSocket проверяются:
+\begin{itemize}
+    \item отказ в подключении анонимному пользователю;
+    \item отказ в подключении к чужому чату;
+    \item доставка нового сообщения участникам диалога;
+    \item доставка события прочтения сообщений;
+    \item доставка нового уведомления в персональный канал пользователя.
+\end{itemize}
+
+Для PDF-договоров проверяются:
+\begin{itemize}
+    \item генерация файла при создании договора;
+    \item пересоздание файла после подписания;
+    \item наличие номера договора;
+    \item наличие данных бронирования;
+    \item наличие сведений о подписях сторон.
+\end{itemize}
+
+\subsection{Модульное и интеграционное тестирование разработанных модулей}
+Модульное и интеграционное тестирование разработанных приложений выполнялось с использованием встроенных средств тестирования Django и Django REST Framework. Для проверки REST API применялся класс \texttt{APIClient}, позволяющий выполнять HTTP-запросы к API без запуска пользовательского интерфейса. Такой подход соответствует структуре разработанного проекта, так как реализованная часть представляет собой серверные Django-приложения и набор API.
+
+Тестирование выполнялось в изолированной конфигурации. Для тестовой базы данных использовалась SQLite, WebSocket-каналы заменялись внутрипроцессным слоем \texttt{InMemoryChannelLayer}, а отправка email выполнялась через тестовый backend Django. Это позволило проверить бизнес-логику модулей без развёртывания внешней базы данных, Redis и SMTP-сервера.
+
+Состав тестируемых модулей представлен в таблице~\ref{tab:module_tests}.
+
+\begin{xltabular}{\textwidth}{|>{\small\raggedright\arraybackslash}p{0.22\textwidth}|>{\small\raggedright\arraybackslash}p{0.24\textwidth}|>{\small\raggedright\arraybackslash}X|}
+\caption{Состав модульных и интеграционных тестов \label{tab:module_tests}}\\ \hline
+\centrow Модуль & \centrow Файл тестов & \centrow Проверяемые функции \\ \hline
+\endfirsthead
+\continuecaption{Продолжение таблицы \ref{tab:module_tests}}
+\centrow Модуль & \centrow Файл тестов & \centrow Проверяемые функции \\ \hline
+\finishhead
+\leftrow Чаты & \leftrow \texttt{chats/tests.py} & \leftrow Создание сообщений, проверка участников чата, отправка изображения, отклонение пустого сообщения, получение справки, отметка сообщений как прочитанных, разделение диалогов по товарам, сортировка диалогов по последнему сообщению. \\ \hline
+\leftrow Уведомления & \leftrow \texttt{notifications/tests.py} & \leftrow Создание уведомления при бронировании, подтверждении бронирования, оплате, приближении даты возврата и новом сообщении; проверка служебных метаданных; проверка endpoint для отметки уведомления прочитанным; проверка вызова email-уведомлений. \\ \hline
+\leftrow Договоры и электронная подпись & \leftrow \texttt{contracts/tests.py} & \leftrow Получение договора по подтверждённому бронированию, запрет создания договора для неподтверждённого бронирования, подписание договора арендатором и арендодателем с формированием демонстрационных кодов электронной подписи. \\ \hline
+\end{xltabular}
+
+Для запуска тестов использовалась команда:
+
+\begin{verbatim}
+python manage.py test chats notifications contracts --settings=arenda_site.test_settings --verbosity=2
+\end{verbatim}
+
+Результат запуска тестов представлен на рисунке~\ref{fig:module_tests_result}.
+
+\begin{figure}[H]
+\begin{lstlisting}[language=Python]
+Found 19 test(s).
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+test_chat_members (chats.tests.ChatTest.test_chat_members) ... ok
+test_conversations_are_sorted_by_last_message (chats.tests.ChatTest.test_conversations_are_sorted_by_last_message) ... ok
+test_create_conversation_is_separated_by_item (chats.tests.ChatTest.test_create_conversation_is_separated_by_item) ... ok
+test_create_empty_message_via_api_is_rejected (chats.tests.ChatTest.test_create_empty_message_via_api_is_rejected) ... ok
+test_create_message (chats.tests.ChatTest.test_create_message) ... ok
+test_create_message_with_image_via_api (chats.tests.ChatTest.test_create_message_with_image_via_api) ... ok
+test_mark_read_returns_updated_message_ids (chats.tests.ChatTest.test_mark_read_returns_updated_message_ids) ... ok
+test_support_faq_is_available_without_auth (chats.tests.ChatTest.test_support_faq_is_available_without_auth) ... ok
+test_booking_creation_creates_owner_notification (notifications.tests.NotificationTests.test_booking_creation_creates_owner_notification) ... ok
+test_confirm_booking_creates_renter_notification (notifications.tests.NotificationTests.test_confirm_booking_creates_renter_notification) ... ok
+test_legacy_return_reminder_command_creates_correct_notification (notifications.tests.NotificationTests.test_legacy_return_reminder_command_creates_correct_notification) ... Отправлено 1 напоминаний о возврате
+ok
+test_mark_notification_read_endpoints (notifications.tests.NotificationTests.test_mark_notification_read_endpoints) ... ok
+test_new_message_notification_contains_chat_metadata (notifications.tests.NotificationTests.test_new_message_notification_contains_chat_metadata) ... ok
+test_payment_confirmed_notification_points_to_my_items (notifications.tests.NotificationTests.test_payment_confirmed_notification_points_to_my_items) ... ok
+test_payment_confirmed_sends_email (notifications.tests.NotificationTests.test_payment_confirmed_sends_email) ... ok
+test_return_reminder_creates_notification (notifications.tests.NotificationTests.test_return_reminder_creates_notification) ... ok
+test_contract_is_unavailable_for_pending_booking (contracts.tests.ContractApiTest.test_contract_is_unavailable_for_pending_booking) ... ok
+test_participant_can_open_contract_by_booking (contracts.tests.ContractApiTest.test_participant_can_open_contract_by_booking) ... ok
+test_renter_and_owner_can_sign_contract_with_demo_eds (contracts.tests.ContractApiTest.test_renter_and_owner_can_sign_contract_with_demo_eds) ... ok
+----------------------------------------------------------------------
+Ran 19 tests in 36.344s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...	
+\end{lstlisting}
+\caption{Результат модульного и интеграционного тестирования приложений chats, notifications и contracts}
+\label{fig:module_tests_result}
+\end{figure}
+
+Результаты тестирования приложения \texttt{chats} подтверждают корректность работы подсистемы обмена сообщениями. Были проверены создание сообщения, наличие участников диалога, отправка сообщения с изображением, отклонение пустого сообщения, получение справочной информации, отметка входящих сообщений как прочитанных, создание отдельных диалогов для разных товаров и сортировка списка диалогов по дате последнего сообщения.
+
+Результаты тестирования приложения \texttt{notifications} подтверждают корректность создания уведомлений при ключевых событиях системы. Проверялись уведомления о новой заявке на бронирование, подтверждении бронирования, подтверждении оплаты, приближении даты возврата и получении нового сообщения. Также проверялась корректность метаданных уведомлений, так как они используются клиентской частью для перехода к нужному разделу системы.
+
+Результаты тестирования приложения \texttt{contracts} подтверждают корректность работы подсистемы договоров. Были проверены получение договора по подтверждённому бронированию, запрет доступа к договору для бронирования в статусе ожидания, а также последовательное подписание договора арендатором и арендодателем. После подписания обеими сторонами договор получает статус подписанного, фиксируется дата подписания, формируются демонстрационные коды электронной подписи и пересоздаётся PDF-файл договора.
+
+\subsection{Системное тестирование модуля взаимодействия с пользователем}
+
+Системное тестирование проводилось на уровне серверного API и проверяло полный пользовательский сценарий взаимодействия арендатора и арендодателя. Поскольку в рамках работы разрабатывались Django-приложения и API, проверка выполнялась без пользовательского интерфейса, через последовательность операций серверной части.
+
+Проверяемый системный сценарий включал следующие действия:
+
+\begin{enumerate}
+    \item Арендатор создаёт заявку на бронирование товара.
+    \item Система создаёт уведомление арендодателю о новой заявке.
+    \item Арендодатель подтверждает бронирование.
+    \item Система создаёт уведомление арендатору о подтверждении бронирования.
+    \item Арендатор создаёт или открывает чат с арендодателем.
+    \item Арендатор отправляет сообщение в чат.
+    \item Система сохраняет сообщение и создаёт уведомление получателю.
+    \item По подтверждённому бронированию создаётся договор аренды.
+    \item Арендатор подписывает договор демонстрационной электронной подписью.
+    \item Арендодатель подписывает договор демонстрационной электронной подписью.
+    \item После подписания обеими сторонами договор получает статус подписанного, а PDF-файл договора пересоздаётся.
+\end{enumerate}
+
+Результат системного тестирования представлен на рисунке~\ref{fig:system_tests_result}.
+
+\begin{figure}[H]
+\begin{lstlisting}[language=Python]
+	Создание бронирования
+	Уведомление арендодателю создано
+	Подтверждение бронирования арендодателем
+	Уведомление арендатору создано
+	Создание диалога между участниками сделки
+	Отправка сообщения в чат
+	Уведомление о новом сообщении создано
+	Cоздание договора по бронированию
+	Подписание договора арендатором
+	Подписание договора арендодателем
+	Статус договора: подписан
+	PDF-файл договора сформирован
+\end{lstlisting}
+\caption{Результат системного тестирования модуля взаимодействия с пользователем}
+\label{fig:system_tests_result}
+\end{figure}
+
+В результате системного тестирования подтверждено, что разработанные приложения \texttt{chats}, \texttt{notifications} и \texttt{contracts} работают совместно и обеспечивают полный сценарий взаимодействия пользователей: от создания события сделки до коммуникации в чате, получения уведомлений, формирования договора и его подписания электронной подписью.
